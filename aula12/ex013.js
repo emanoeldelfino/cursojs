@@ -1,5 +1,6 @@
 var now = new Date();
 var weekDay = now.getDay();
+
 /*
     0 = Sunday
     1 = Monday
