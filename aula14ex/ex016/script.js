@@ -26,50 +26,47 @@ async function loop() {
         const end = Number(values[1])
         let step = Number(values[2])
 
-        if (step === 0) {
+        if (step < 0) {
+            window.alert('Invalid step. Considering positive step.')
+            step = Math.abs(step)
+        } else if (step == 0) {
             window.alert('Invalid step. Considering step 1.')
             step = 1;
         }
 
-        if (step < 0 && start < end) {
-            window.alert('For negative step, start must be greater than or qual to end')
-        } else if (step > 0 && start > end) {
-            window.alert('For positive step, end must be greater than or equal to start')
-        } else {  
-            let c = start
-            let negative = false
+        msgElem.innerText = 'Contando...'
 
-            msgElem.innerText = 'Contando...'
+        textCountElem.innerText = ''
 
-            textCountElem.innerText = ''
+        if (start < end) {
+            for(let c = start; c <= end; c += step) {
+                textCountElem.innerText += `${c} ${handEmoji}`
 
-            // if (step < 0) {
-            //     negative = true
-            //     [start, end, step] = [start, end, step].map((num) => {
-            //         Math.abs(num)
-            //     })
-            // }
-
-            if (step > 0) {
-                while (c <= end) {
-                    textCountElem.innerText += `${c} ${handEmoji}`
-            
-                    await sleep(500);
-            
-                    c += step
-                }
-            } else {
-                while (c >= end) {
-                    textCountElem.innerText += `${c} ${handEmoji}`
-
-                    await sleep(500)
-
-                    c += step
-                }
+                await sleep(500)
             }
-        
-            textCountElem.innerText += ` ${flagEmoji}`
+        } else {
+            for(let c = start; c >= end; c -= step) {
+                textCountElem.innerText += `${c} ${handEmoji}`
+
+                await sleep(500)
+            }
         }
+
+        textCountElem.innerText += ` ${flagEmoji}`
+
+        // if (step < 0 && start < end) {
+        //     window.alert('For negative step, start must be greater than or qual to end')
+        // } else if (step > 0 && start > end) {
+        //     window.alert('For positive step, end must be greater than or equal to start')
+        // } else {  
+            
+        //     // if (step < 0) {
+        //     //     negative = true
+        //     //     [start, end, step] = [start, end, step].map((num) => {
+        //     //         Math.abs(num)
+        //     //     })
+        //     // }
+        // }
     } else {
         alert('Impossible to count. You must insert all the inputs.')
     }
