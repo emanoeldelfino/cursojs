@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabuada</title>
+    <title>Multiplication table</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Tabuada</h1>
+        <h1>Multiplication table</h1>
     </header>
     <section>
         <div id="inputs">
-            <label for="number">Número:</label>
+            <label for="number">Number:</label>
             <input type="number" id="number">
 
-            <button id="generate-table">Gerar Tabuada</button>
+            <button id="generate-table">Generate Multiplication table</button>
         </div>
-        <div id="multiplication-table">
-            <select name="table" id="table" size="10">
-                <option value="">Digite um número acima</option>
+        <div id="multiplication-table" class="tooltip">
+            <span class="tooltiptext">Count copied to clipboard.</span>
+            <select name="table" id="table" size="10" class="tooltip">
+                <option value="">Type a number above</option>
             </select>
         </div>
     </section>
     <footer>
-        <p>&copy; CursoemVideo</p>
+        <p>&copy; Emanoel Delfino</p>
     </footer>
     <script src="script.js"></script>
 </body>

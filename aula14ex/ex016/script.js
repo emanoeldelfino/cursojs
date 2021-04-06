@@ -18,56 +18,66 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+let counting = false;
+
 async function loop() {
-    const values = [startElem.value, endElem.value, stepElem.value]
+    if (!counting) {
+        const values = [startElem.value, endElem.value, stepElem.value]
 
-    if (values.every(notEmptyString)) {
-        const start = Number(values[0])
-        const end = Number(values[1])
-        let step = Number(values[2])
+        if (values.every(notEmptyString)) {
+            const start = Number(values[0])
+            const end = Number(values[1])
+            let step = Number(values[2])
 
-        if (step < 0) {
-            window.alert('Invalid step. Considering positive step.')
-            step = Math.abs(step)
-        } else if (step == 0) {
-            window.alert('Invalid step. Considering step 1.')
-            step = 1;
-        }
-
-        msgElem.innerText = 'Contando...'
-
-        textCountElem.innerText = ''
-
-        if (start < end) {
-            for(let c = start; c <= end; c += step) {
-                textCountElem.innerText += `${c} ${handEmoji}`
-
-                await sleep(500)
+            if (step < 0) {
+                window.alert('Invalid step. Considering positive step.')
+                step = Math.abs(step)
+            } else if (step == 0) {
+                window.alert('Invalid step. Considering step 1.')
+                step = 1;
             }
+
+            msgElem.innerText = 'Contando...'
+
+            textCountElem.innerText = ''
+
+            counting = true;
+
+            if (start < end) {
+                
+                for(let c = start; c <= end; c += step) {
+                    textCountElem.innerText += `${c} ${handEmoji}`
+
+                    await sleep(500)
+                }
+            } else {
+                for(let c = start; c >= end; c -= step) {
+                    textCountElem.innerText += `${c} ${handEmoji}`
+
+                    await sleep(500)
+                }
+            }
+
+            counting = false;
+
+            textCountElem.innerText += ` ${flagEmoji}`
+
+            // if (step < 0 && start < end) {
+            //     window.alert('For negative step, start must be greater than or qual to end')
+            // } else if (step > 0 && start > end) {
+            //     window.alert('For positive step, end must be greater than or equal to start')
+            // } else {
+            //     if (step < 0) {
+            //         negative = true
+            //         [start, end, step] = [start, end, step].map((num) => {
+            //             Math.abs(num)
+            //         })
+            //     }
+            // }
         } else {
-            for(let c = start; c >= end; c -= step) {
-                textCountElem.innerText += `${c} ${handEmoji}`
-
-                await sleep(500)
-            }
+            alert('Impossible to count. You must insert all the inputs.')
         }
-
-        textCountElem.innerText += ` ${flagEmoji}`
-
-        // if (step < 0 && start < end) {
-        //     window.alert('For negative step, start must be greater than or qual to end')
-        // } else if (step > 0 && start > end) {
-        //     window.alert('For positive step, end must be greater than or equal to start')
-        // } else {  
-            
-        //     // if (step < 0) {
-        //     //     negative = true
-        //     //     [start, end, step] = [start, end, step].map((num) => {
-        //     //         Math.abs(num)
-        //     //     })
-        //     // }
-        // }
     } else {
-        alert('Impossible to count. You must insert all the inputs.')
+        alert('Counting in progress. Wait it to start a new one!')
     }
 }

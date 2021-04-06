@@ -24,3 +24,24 @@ footer {
 div#inputs {
     margin-bottom: 20px;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+  
+.tooltip .tooltiptext {
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    font-size: 14pt;
+    visibility: hidden;
+    left: 200px;
+    top: 50px;
+}
