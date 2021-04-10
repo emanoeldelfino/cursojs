@@ -17,22 +17,8 @@ function isInRange(num, start, end) {
     }
 }
 
-// function inList(value, list) {
-//     // for (index in list) {
-//     //     if (value === list[index]) {
-//     //         return true
-//     //     }
-//     // }
-//     // return false
-
-//     return (list.indexOf(value) !== -1)
-//     // ar !== (nums.indexOf(numValue) !== -1)
-//     // ar === (nums.indexOf(numValue) === -1)
-// }
-
 function update(ar = true) {
     if (num.value.length > 0) {
-        // nums.indexOf(Number(num.value)) === -1
         if (isInRange(num.value, 1, 100)) {
             let numValue = Number(num.value)
 
@@ -58,15 +44,15 @@ function update(ar = true) {
     } else {
         window.alert('Insira um número.')
     }
+
+    num.value = ''
+    num.focus()
 }
 
 function adicionar() {
     if (num.value.length > 0) {
         if (isInRange(num.value, 1, 100) && nums.indexOf(Number(num.value)) === -1) {
             nums.push(Number(num.value))
-            // let option = document.createElement('option')
-            // option.innerText = `O valor ${num.value} foi adicionado.`
-            // select.appendChild(option)
             newElems([['option', `O valor ${num.value} foi adicionado`]], select)
         } else {
             window.alert('Valor inválido ou já encontrado na lista.')
