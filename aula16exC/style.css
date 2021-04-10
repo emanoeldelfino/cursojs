@@ -18,9 +18,14 @@ section {
 }
 
 select#flista {
-    width: 150px;
+    width: 160px;
 }
 
 footer {
     font-style: italic;
+}
+
+input[value="Limpar"],
+input[value="Finalizar"] {
+    width: 77.2px;
 }

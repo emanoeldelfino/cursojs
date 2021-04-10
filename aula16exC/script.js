@@ -75,4 +75,10 @@ function finalizar() {
     }
 }
 
+function limpar() {
+    lista.innerHTML = ''
+    res.innerHTML = ''
+    valores = []
+}
+
 // Posição da função pode variar por que o JS faz içamento/hoisting.
